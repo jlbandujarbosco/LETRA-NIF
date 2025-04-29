@@ -10,16 +10,22 @@
     <h1>Cálculo de Letra del Nif</h1>
 <div id="calculo-letra">
     <label for="">Número de NIF</label>
-    <input type="text" id="nif">
+    <input type="text" id="nif" pattern="[0-9]{8}">
     <button onclick="muestraLetraNif()">Calcular Letra</button>
 
 </div>
 <script>
     function calculaLetraNif(nif){
         //letra = ['T','R','W']
-         let letra = "TRWAGMYFPDXBNJZSQVHLCKE";
-         let posicion = nif%23;
-         return letra[posicion]
+        const regex = /^\d{8}$/;
+        if ( regex.test(nif)){
+            let letra = "TRWAGMYFPDXBNJZSQVHLCKE";
+            let posicion = nif%23;
+            return letra[posicion]
+        } else {
+            alert("Debes introducir 8 dígitos");
+        }
+         
     }
     function muestraLetraNif(){
         let nif = document.getElementById("nif").value;
